@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: hls-converter-api
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: apt-get update && apt-get install -y ffmpeg && npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+    disk:
+      name: videos
+      mountPath: /opt/render/project/src/videos
+      sizeGB: 5
